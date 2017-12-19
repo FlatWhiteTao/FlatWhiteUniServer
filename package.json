@@ -13,6 +13,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "mongojs": "^2.4.1",
+    "mongoose": "^4.13.7",
     "swagger-ui-express": "^2.0.13"
   }
 }

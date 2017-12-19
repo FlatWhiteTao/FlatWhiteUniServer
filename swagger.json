@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Yet Another Node.js Blogg Application API",
-    "description": "Yet Another Node.js Blogg Application API",
+    "title": "FlatWhiteUni Server REST API",
+    "description": "FlatWhiteUni Project Server",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -13,8 +13,8 @@
   "basePath": "/api",
   "tags": [
     {
-      "name": "Subjects",
-      "description": "API for subjects in the system"
+      "name": "FlatWhiteUni",
+      "description": "API for FlatWhiteUni server in the system"
     }
   ],
   "schemes": [
@@ -27,19 +27,20 @@
     "application/json"
   ],
   "paths": {
-    "/subjects": {
+    "/universities": {
       "post": {
         "tags": [
-          "Users"
+          "Universities"
         ],
-        "description": "Create new user in system",
+        "summary": "Add a new university in system",
+        "description": "Create new university in system",
         "parameters": [
           {
-            "name": "user",
+            "name": "university",
             "in": "body",
-            "description": "User that we want to create",
+            "description": "university that we want to create",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         ],
@@ -48,86 +49,86 @@
         ],
         "responses": {
           "200": {
-            "description": "New user is created",
+            "description": "New university is created",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         }
       },
       "get": {
         "tags": [
-          "Users"
+          "Universities"
         ],
-        "summary": "Get all subjects in system",
+        "summary": "Get all universities in system",
         "responses": {
           "200": {
             "description": "OK",
             "schema": {
-              "$ref": "#/definitions/Users"
+              "$ref": "#/definitions/Universities"
             }
           }
         }
       }
     },
-    "/users/{userId}": {
+    "/universities/{id}": {
       "parameters": [
         {
-          "name": "userId",
+          "name": "id",
           "in": "path",
           "required": true,
-          "description": "ID of user that we want to find",
+          "description": "ID of university that we want to find",
           "type": "string"
         }
       ],
       "get": {
         "tags": [
-          "Users"
+          "Universities"
         ],
-        "summary": "Get user with given ID",
+        "summary": "Get university with given ID",
         "responses": {
           "200": {
-            "description": "User is found",
+            "description": "University is found",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         }
       },
       "delete": {
-        "summary": "Delete user with given ID",
+        "summary": "Delete university with given ID",
         "tags": [
-          "Users"
+          "Universities"
         ],
         "responses": {
           "200": {
-            "description": "User is deleted",
+            "description": "University is deleted",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         }
       },
       "put": {
-        "summary": "Update user with give ID",
+        "summary": "Update university with give ID",
         "tags": [
-          "Users"
+          "Universities"
         ],
         "parameters": [
           {
-            "name": "user",
+            "name": "university",
             "in": "body",
-            "description": "User with new values of properties",
+            "description": "university with new values of properties",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         ],
         "responses": {
           "200": {
-            "description": "User is updated",
+            "description": "university is updated",
             "schema": {
-              "$ref": "#/definitions/User"
+              "$ref": "#/definitions/University"
             }
           }
         }
@@ -135,9 +136,13 @@
     }
   },
   "definitions": {
-    "User": {
-      "required": [
-        "email",
+    
+    
+    
+    "University": {
+      "required":[
+        "name",
+        "city",
         "_id"
       ],
       "properties": {
@@ -145,21 +150,19 @@
           "type": "string",
           "uniqueItems": true
         },
-        "email": {
+        "name": {
           "type": "string",
           "uniqueItems": true
         },
-        "lastName": {
-          "type": "string"
-        },
-        "firstName": {
+        "city": {
           "type": "string"
         }
-      }
-    },
-    "Users": {
-      "type": "array",
-      "$ref": "#/definitions/User"
     }
-  }
+  },
+
+  "Universities": {
+      "type": "array",
+      "$ref": "#/definitions/University"
+    }
+}
 }

@@ -4,11 +4,13 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 
+
 var swaggerUi = require('swagger-ui-express');
 var swaggerDocument = require('./swagger.json');
 
 var index = require('./routes/index');
-var subjects = require('./routes/subjects');
+var subjects = require('./routes/subject');
+var universities = require('./routes/university');
 var port = 3000;
 
 var app = express();
@@ -29,6 +31,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use('/',index);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api',subjects);
+app.use('/api',universities);
 
 
 app.listen(port,function(){
