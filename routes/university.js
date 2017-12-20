@@ -76,7 +76,7 @@ router.put('/universities/:id',function(req,res,next){
 	}
 
 	if(university.city){
-		updUniversityValue.title = university.city;
+		updUniversityValue.city = university.city;
 	}
 
 	if(!updUniversityValue){
@@ -85,7 +85,6 @@ router.put('/universities/:id',function(req,res,next){
 			"error": "Bad Data"
 		});
 	}else{
-		var updUniversity = new University(updUniversityValue);
 		University.findOneAndUpdate({_id: req.params.id}, updUniversityValue, {}, function(err, university){
 					if(err){
 							res.send(err);
@@ -93,6 +92,43 @@ router.put('/universities/:id',function(req,res,next){
 					res.json(university);
 			});
 	}
+});
+
+
+// Get Single University By Name
+router.get('/universities/name/:name', function(req, res, next){
+    
+	//store the specific query conditions
+	var query = {};
+	if(req.params.name){
+			query.name = req.params.name;
+	}
+
+	University.findOne(query, function(err, tasks){
+			if(err){
+					res.send(err);
+			}
+			// res.send(query);
+			res.json(tasks);
+	});
+});
+
+// Get One/Some Universities By City
+router.get('/universities/city/:city', function(req, res, next){
+    
+	//store the specific query conditions
+	var query = {};
+	if(req.params.city){
+			query.city = req.params.city;
+	}
+
+	University.find(query, function(err, tasks){
+			if(err){
+					res.send(err);
+			}
+			// res.send(query);
+			res.json(tasks);
+	});
 });
 	
 
