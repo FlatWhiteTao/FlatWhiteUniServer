@@ -133,6 +133,56 @@
           }
         }
       }
+    },
+    "/universities/name/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of university that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Get university with given name",
+        "responses": {
+          "200": {
+            "description": "University is found",
+            "schema": {
+              "$ref": "#/definitions/University"
+            }
+          }
+        }
+      }
+    },
+    "/universities/city/{city}": {
+      "parameters": [
+        {
+          "name": "city",
+          "in": "path",
+          "required": true,
+          "description": "City of universities that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Universities"
+        ],
+        "summary": "Get universities with given city",
+        "responses": {
+          "200": {
+            "description": "University is found",
+            "schema": {
+              "$ref": "#/definitions/University"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
