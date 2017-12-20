@@ -63,6 +63,37 @@ router.delete('/universities/:id',function(req,res,next){
 		res.json(university);
 	});
 });
+
+
+// Update a University In db
+router.put('/universities/:id',function(req,res,next){
+
+	var university = new University(req.body);
+	var updUniversityValue = {};
+
+	if(university.name){
+		updUniversityValue.name = university.name;
+	}
+
+	if(university.city){
+		updUniversityValue.title = university.city;
+	}
+
+	if(!updUniversityValue){
+		res.status(400);
+		res.json({
+			"error": "Bad Data"
+		});
+	}else{
+		var updUniversity = new University(updUniversityValue);
+		University.findOneAndUpdate({_id: req.params.id}, updUniversityValue, {}, function(err, university){
+					if(err){
+							res.send(err);
+					}
+					res.json(university);
+			});
+	}
+});
 	
 
 module.exports = router;
