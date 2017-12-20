@@ -10,7 +10,7 @@ var swaggerDocument = require('./swagger.json');
 
 var index = require('./routes/index');
 var universities = require('./routes/university');
-var port = 3000;
+var port = 8081;
 
 var app = express();
 

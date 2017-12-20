@@ -4,6 +4,7 @@
   "description": "FlatWhiteUni",
   "main": "fwuserver.js",
   "scripts": {
+    "start": "node fwuserver.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
