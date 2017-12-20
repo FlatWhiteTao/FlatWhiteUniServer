@@ -8,7 +8,8 @@ const universitySchema = new Schema({
 	
 	name:{
 		type:String,
-		required:[true,'Name filed is required']
+		required:[true,'Name filed is required'],
+		unique:true
 	},
 	city:{
 		type:String
