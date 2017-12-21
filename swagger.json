@@ -300,7 +300,7 @@
           "name": "name",
           "in": "path",
           "required": true,
-          "description": "Name of school that we want to find",
+          "description": "Name of school(s) that we want to find",
           "type": "string"
         }
       ],
@@ -308,10 +308,10 @@
         "tags": [
           "Schools"
         ],
-        "summary": "Get a shool with given name",
+        "summary": "Get shool(s) with given name",
         "responses": {
           "200": {
-            "description": "School is found",
+            "description": "School(s) is found",
             "schema": {
               "$ref": "#/definitions/School"
             }
