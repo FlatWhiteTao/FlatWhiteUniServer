@@ -263,6 +263,7 @@
       "required":[
         "name",
         "universityName",
+        "universityId",
         "_id"
       ],
       "properties": {
@@ -275,6 +276,9 @@
           "uniqueItems": true
         },
         "universityName": {
+          "type": "string"
+        },
+        "universityId":{
           "type": "string"
         }
     }

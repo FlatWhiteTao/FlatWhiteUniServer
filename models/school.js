@@ -14,6 +14,10 @@ const schoolSchema = new Schema({
 	universityName:{
 		type:String,
 		required:[true,'University name filed is required']
+	},
+	universityId:{
+		type:String,
+		required:[true,'University id filed is required']
 	}
 });
 
