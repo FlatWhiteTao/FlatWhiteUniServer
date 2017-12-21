@@ -30,55 +30,55 @@ router.post('/schools',function(req,res,next){
 
 
 
-// Get Single Univeristy by Id
-router.get('/universities/:id',function(req,res,next){
-	University.findById(req.params.id,function(err,university){
+// Get Single School by Id
+router.get('/schools/:id',function(req,res,next){
+	School.findById(req.params.id,function(err,school){
 		if(err){
 			res.send(err);
 
 		}
-		res.json(university);
+		res.json(school);
 	});
 });
 	
 
-// Delete a university from the db
-router.delete('/universities/:id',function(req,res,next){
-	University.findByIdAndRemove(req.params.id,function(err,university){
+// Delete a school from the db by id
+router.delete('/schools/:id',function(req,res,next){
+	School.findByIdAndRemove(req.params.id,function(err,school){
 		if(err){
 			res.send(err);
 
 		}
-		res.json(university);
+		res.json(school);
 	});
 });
 
 
-// Update a University In db
-router.put('/universities/:id',function(req,res,next){
+// Update a School In db
+router.put('/schools/:id',function(req,res,next){
 
-	var university = new University(req.body);
-	var updUniversityValue = {};
+	var school = new School(req.body);
+	var updSchoolValue = {};
 
-	if(university.name){
-		updUniversityValue.name = university.name;
+	if(school.name){
+		updSchoolValue.name = school.name;
 	}
 
-	if(university.city){
-		updUniversityValue.city = university.city;
+	if(school.universityName){
+		updSchoolValue.universityName = school.universityName;
 	}
 
-	if(!updUniversityValue){
+	if(!updSchoolValue){
 		res.status(400);
 		res.json({
 			"error": "Bad Data"
 		});
 	}else{
-		University.findOneAndUpdate({_id: req.params.id}, updUniversityValue, {}, function(err, university){
+		School.findOneAndUpdate({_id: req.params.id}, updSchoolValue, {}, function(err, school){
 					if(err){
 							res.send(err);
 					}
-					res.json(university);
+					res.json(school);
 			});
 	}
 });

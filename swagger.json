@@ -230,6 +230,69 @@
       }
     }
   },
+  "/schools/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of school that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get a school with given ID",
+        "responses": {
+          "200": {
+            "description": "School is found",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a school with given ID",
+        "tags": [
+          "Schools"
+        ],
+        "responses": {
+          "200": {
+            "description": "School is deleted",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a school with given ID",
+        "tags": [
+          "Schools"
+        ],
+        "parameters": [
+          {
+            "name": "school",
+            "in": "body",
+            "description": "school with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "school is updated",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      }
+    },
 
   "definitions": {
     
