@@ -8,8 +8,8 @@ const schoolSchema = new Schema({
 	
 	name:{
 		type:String,
-		required:[true,'School Name filed is required'],
-		unique:true
+		required:[true,'School Name filed is required']
+		
 	},
 	universityName:{
 		type:String,

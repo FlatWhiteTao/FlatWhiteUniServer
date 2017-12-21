@@ -228,9 +228,9 @@
           }
         }
       }
-    }
-  },
-  "/schools/{id}": {
+    },
+    
+    "/schools/{id}": {
       "parameters": [
         {
           "name": "id",
@@ -294,6 +294,61 @@
       }
     },
 
+    "/schools/name/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of school that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get a shool with given name",
+        "responses": {
+          "200": {
+            "description": "School is found",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      }
+    },
+    "/schools/universityName/{universityName}": {
+      "parameters": [
+        {
+          "name": "universityName",
+          "in": "path",
+          "required": true,
+          "description": "University of schools that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get schools with given university name",
+        "responses": {
+          "200": {
+            "description": "Schools are found",
+            "schema": {
+              "$ref": "#/definitions/Schools"
+            }
+          }
+        }
+      }
+    }
+
+  },
+  
+  
+
   "definitions": {
     
     "University": {
@@ -335,8 +390,8 @@
           "uniqueItems": true
         },
         "name": {
-          "type": "string",
-          "uniqueItems": true
+          "type": "string"
+          
         },
         "universityName": {
           "type": "string"

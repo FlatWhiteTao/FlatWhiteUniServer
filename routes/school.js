@@ -68,6 +68,10 @@ router.put('/schools/:id',function(req,res,next){
 		updSchoolValue.universityName = school.universityName;
 	}
 
+	if(school.universityId){
+		updSchoolValue.universityId = school.universityId
+	}
+
 	if(!updSchoolValue){
 		res.status(400);
 		res.json({
@@ -84,8 +88,8 @@ router.put('/schools/:id',function(req,res,next){
 });
 
 
-// Get Single University By Name
-router.get('/universities/name/:name', function(req, res, next){
+// Get School(s) By Name
+router.get('/schools/name/:name', function(req, res, next){
     
 	//store the specific query conditions
 	var query = {};
@@ -93,7 +97,7 @@ router.get('/universities/name/:name', function(req, res, next){
 			query.name = req.params.name;
 	}
 
-	University.findOne(query, function(err, tasks){
+	School.find(query, function(err, tasks){
 			if(err){
 					res.send(err);
 			}
@@ -102,16 +106,16 @@ router.get('/universities/name/:name', function(req, res, next){
 	});
 });
 
-// Get One/Some Universities By City
-router.get('/universities/city/:city', function(req, res, next){
+// Get One/Some Schools By University
+router.get('/schools/universityName/:universityName', function(req, res, next){
     
 	//store the specific query conditions
 	var query = {};
-	if(req.params.city){
-			query.city = req.params.city;
+	if(req.params.universityName){
+			query.universityName = req.params.universityName;
 	}
 
-	University.find(query, function(err, tasks){
+	School.find(query, function(err, tasks){
 			if(err){
 					res.send(err);
 			}
