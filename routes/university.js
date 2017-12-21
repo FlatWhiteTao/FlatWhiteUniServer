@@ -14,7 +14,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 mongoose.Promise = global.Promise;
 
 // Defined University Model
-const University = require('../models/university')
+const University = require('../models/university');
 
 
 // Get a list of universities in the database

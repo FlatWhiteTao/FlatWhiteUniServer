@@ -10,6 +10,7 @@ var swaggerDocument = require('./swagger.json');
 
 var index = require('./routes/index');
 var universities = require('./routes/university');
+var schools = require('./routes/school');
 var port = 8081;
 
 var app = express();
@@ -30,6 +31,7 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use('/',index);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api',universities);
+app.use('/api',schools);
 
 
 app.listen(port,function(){

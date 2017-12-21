@@ -183,11 +183,55 @@
           }
         }
       }
+    },
+
+    "/schools":{
+      "post": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Add a new school in system",
+        "description": "Create new school in system",
+        "parameters": [
+          {
+            "name": "school",
+            "in": "body",
+            "description": "school that we want to create",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New school is created",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get all schools in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Schools"
+            }
+          }
+        }
+      }
     }
   },
+
   "definitions": {
-    
-    
     
     "University": {
       "required":[
@@ -213,6 +257,33 @@
   "Universities": {
       "type": "array",
       "$ref": "#/definitions/University"
+    },
+
+  "School": {
+      "required":[
+        "name",
+        "universityName",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "universityName": {
+          "type": "string"
+        }
     }
+  },
+
+  "Schools": {
+      "type": "array",
+      "$ref": "#/definitions/School"
+    }
+
 }
 }
