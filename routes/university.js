@@ -1,20 +1,9 @@
 // Set up
 var express = require('express');
 var router = express.Router();
-var mongojs = require('mongojs');
-const mongoose = require('mongoose');
-
-//Mlab MongoDB connection 
-var mongoDB = 'mongodb://fwu:123456@ds161146.mlab.com:61146/flatwhiteunidb';
-mongoose.connect(mongoDB, {
-  useMongoClient: true
-});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-mongoose.Promise = global.Promise;
 
 // Defined University Model
-const University = require('../models/university')
+const University = require('../models/university');
 
 
 // Get a list of universities in the database

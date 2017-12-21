@@ -183,11 +183,173 @@
           }
         }
       }
+    },
+
+    "/schools":{
+      "post": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Add a new school in system",
+        "description": "Create new school in system",
+        "parameters": [
+          {
+            "name": "school",
+            "in": "body",
+            "description": "school that we want to create",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New school is created",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get all schools in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Schools"
+            }
+          }
+        }
+      }
+    },
+    
+    "/schools/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of school that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get a school with given ID",
+        "responses": {
+          "200": {
+            "description": "School is found",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a school with given ID",
+        "tags": [
+          "Schools"
+        ],
+        "responses": {
+          "200": {
+            "description": "School is deleted",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a school with given ID",
+        "tags": [
+          "Schools"
+        ],
+        "parameters": [
+          {
+            "name": "school",
+            "in": "body",
+            "description": "school with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "school is updated",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      }
+    },
+
+    "/schools/name/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of school(s) that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get shool(s) with given name",
+        "responses": {
+          "200": {
+            "description": "School(s) is found",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      }
+    },
+    "/schools/universityName/{universityName}": {
+      "parameters": [
+        {
+          "name": "universityName",
+          "in": "path",
+          "required": true,
+          "description": "University of schools that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get schools with given university name",
+        "responses": {
+          "200": {
+            "description": "Schools are found",
+            "schema": {
+              "$ref": "#/definitions/Schools"
+            }
+          }
+        }
+      }
     }
+
   },
+  
+  
+
   "definitions": {
-    
-    
     
     "University": {
       "required":[
@@ -213,6 +375,37 @@
   "Universities": {
       "type": "array",
       "$ref": "#/definitions/University"
+    },
+
+  "School": {
+      "required":[
+        "name",
+        "universityName",
+        "universityId",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+          
+        },
+        "universityName": {
+          "type": "string"
+        },
+        "universityId":{
+          "type": "string"
+        }
     }
+  },
+
+  "Schools": {
+      "type": "array",
+      "$ref": "#/definitions/School"
+    }
+
 }
 }
