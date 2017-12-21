@@ -106,13 +106,31 @@ router.get('/schools/name/:name', function(req, res, next){
 	});
 });
 
-// Get One/Some Schools By University
+// Get One/Some Schools By University Name
 router.get('/schools/universityName/:universityName', function(req, res, next){
     
 	//store the specific query conditions
 	var query = {};
 	if(req.params.universityName){
 			query.universityName = req.params.universityName;
+	}
+
+	School.find(query, function(err, tasks){
+			if(err){
+					res.send(err);
+			}
+			// res.send(query);
+			res.json(tasks);
+	});
+});
+
+// Get One/Some Schools By University Id
+router.get('/schools/universityId/:universityId', function(req, res, next){
+    
+	//store the specific query conditions
+	var query = {};
+	if(req.params.universityId){
+			query.universityId = req.params.universityId;
 	}
 
 	School.find(query, function(err, tasks){

@@ -343,6 +343,32 @@
           }
         }
       }
+    },
+    
+    "/schools/universityId/{universityId}": {
+      "parameters": [
+        {
+          "name": "universityId",
+          "in": "path",
+          "required": true,
+          "description": "University Id of schools that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Schools"
+        ],
+        "summary": "Get schools with given university id",
+        "responses": {
+          "200": {
+            "description": "Schools are found",
+            "schema": {
+              "$ref": "#/definitions/Schools"
+            }
+          }
+        }
+      }
     }
 
   },
