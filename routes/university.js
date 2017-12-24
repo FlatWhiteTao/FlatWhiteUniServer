@@ -68,6 +68,18 @@ router.put('/universities/:id',function(req,res,next){
 		updUniversityValue.city = university.city;
 	}
 
+	if(university.geopoint.lat){
+		updUniversityValue.geopoint.lat = university.geopoint.lat;
+	}
+
+	if(university.geopoint.lng){
+		updUniversityValue.geopoint.lng = university.geopoint.lng;
+	}
+
+	if(university.uniBadgeId){
+		updUniversityValue.uniBadgeId = university.uniBadgeId;
+	}
+
 	if(!updUniversityValue){
 		res.status(400);
 		res.json({
