@@ -13,6 +13,17 @@ const universitySchema = new Schema({
 	},
 	city:{
 		type:String
+	},
+	uniBadgeId:{
+		type:String
+	},
+	geopoint:{
+		lat:{
+			type:Number
+		},
+		lng:{
+			type:Number
+		}
 	}
 });
 
