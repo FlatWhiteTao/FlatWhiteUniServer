@@ -394,7 +394,29 @@
         },
         "city": {
           "type": "string"
+        },
+        "geopoint":{
+          "type":"geopoint",
+          "$ref": "#/definitions/geopoint"
+        },
+        "uniBadgeId":{
+          "type":"string"
         }
+    }
+  },
+
+  "geopoint":{
+    "required":[
+      "lat",
+      "lng"
+    ],
+    "properties":{
+      "lat":{
+        "type":"number"
+      },
+      "lng":{
+        "type":"number"
+      }
     }
   },
 
@@ -427,6 +449,8 @@
         }
     }
   },
+
+
 
   "Schools": {
       "type": "array",

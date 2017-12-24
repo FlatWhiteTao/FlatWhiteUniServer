@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 
+
 //Create university Schema & model
 
 const universitySchema = new Schema({
@@ -18,12 +19,9 @@ const universitySchema = new Schema({
 		type:String
 	},
 	geopoint:{
-		lat:{
-			type:Number
-		},
-		lng:{
-			type:Number
-		}
+		    
+			lat: { type : Number, min:-180, max:180},
+			lng: { type : Number, min:-180, max:180}
 	}
 });
 
