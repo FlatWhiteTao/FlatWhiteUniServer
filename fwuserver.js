@@ -24,7 +24,7 @@ var index = require('./routes/index');
 var universities = require('./routes/university');
 var schools = require('./routes/school');
 var majors = require('./routes/major')
-var port = 9000;
+var port = 8080;
 
 var app = express();
 
