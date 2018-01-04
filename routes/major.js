@@ -82,7 +82,12 @@ router.put('/majors/:id',function(req,res,next){
 					if(err){
 							res.send(err);
 					}
-					res.json(major);
+					Major.findById(req.params.id,function(err,major){
+						if(err){
+							res.send(err);
+						}
+							res.json(major);
+					});
 			});
 	}
 });
