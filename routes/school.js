@@ -16,7 +16,7 @@ router.get('/schools',function(req,res,next){
 	});
 });
 
-// Save a new university to the db via the university model
+// Save a new school to the db via the school model
 router.post('/schools',function(req,res,next){
 	var school = new School(req.body);
 	school.save(function (err) {
