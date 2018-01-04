@@ -23,6 +23,7 @@ mongoose.Promise = global.Promise;
 var index = require('./routes/index');
 var universities = require('./routes/university');
 var schools = require('./routes/school');
+var majors = require('./routes/major')
 var port = 8081;
 
 var app = express();
@@ -44,6 +45,7 @@ app.use('/',index);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api',universities);
 app.use('/api',schools);
+app.use('/api',majors)
 
 
 app.listen(port,function(){

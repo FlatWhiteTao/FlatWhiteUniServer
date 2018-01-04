@@ -369,7 +369,195 @@
           }
         }
       }
+    },
+
+
+    "/majors":{
+      "post": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Add a new major in system",
+        "description": "Create new major in system",
+        "parameters": [
+          {
+            "name": "major",
+            "in": "body",
+            "description": "major that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Major"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New Major is created",
+            "schema": {
+              "$ref": "#/definitions/School"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Get all majors in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Majors"
+            }
+          }
+        }
+      }
+    },
+    
+    "/majors/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "description": "ID of major that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Get a major with given ID",
+        "responses": {
+          "200": {
+            "description": "Major is found",
+            "schema": {
+              "$ref": "#/definitions/Major"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete a major with given ID",
+        "tags": [
+          "Majors"
+        ],
+        "responses": {
+          "200": {
+            "description": "Major is deleted",
+            "schema": {
+              "$ref": "#/definitions/Major"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a major with given ID",
+        "tags": [
+          "Majors"
+        ],
+        "parameters": [
+          {
+            "name": "major",
+            "in": "body",
+            "description": "major with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Major"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Major is updated",
+            "schema": {
+              "$ref": "#/definitions/Major"
+            }
+          }
+        }
+      }
+    },
+
+    "/majors/name/{name}": {
+      "parameters": [
+        {
+          "name": "name",
+          "in": "path",
+          "required": true,
+          "description": "Name of major(s) that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Get major(s) with given name",
+        "responses": {
+          "200": {
+            "description": "major(s) is found",
+            "schema": {
+              "$ref": "#/definitions/Majors"
+            }
+          }
+        }
+      }
+    },
+    "/majors/schoolName/{schoolName}": {
+      "parameters": [
+        {
+          "name": "schoolName",
+          "in": "path",
+          "required": true,
+          "description": "School of majors that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Get majors with given school name",
+        "responses": {
+          "200": {
+            "description": "majors are found",
+            "schema": {
+              "$ref": "#/definitions/Majors"
+            }
+          }
+        }
+      }
+    },
+    
+    "/majors/schoolId/{schoolId}": {
+      "parameters": [
+        {
+          "name": "schoolId",
+          "in": "path",
+          "required": true,
+          "description": "School Id of schools that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Majors"
+        ],
+        "summary": "Get majors with given school id",
+        "responses": {
+          "200": {
+            "description": "Majors are found",
+            "schema": {
+              "$ref": "#/definitions/Majors"
+            }
+          }
+        }
+      }
     }
+
 
   },
   
@@ -455,7 +643,36 @@
   "Schools": {
       "type": "array",
       "$ref": "#/definitions/School"
+    },
+
+  "Major": {
+    "required":[
+        "name",
+        "schoolName",
+        "schoolId",
+        "_id"
+      ],
+      "properties": {
+        "_id": {
+          "type": "string",
+          "uniqueItems": true
+        },
+        "name": {
+          "type": "string"
+          
+        },
+        "schoolName": {
+          "type": "string"
+        },
+        "schoolId":{
+          "type": "string"
+        }
     }
+  },
+  "Majors": {
+      "type": "array",
+      "$ref": "#/definitions/Major"
+    }  
 
 }
 }
