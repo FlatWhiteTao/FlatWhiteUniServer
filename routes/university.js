@@ -1,20 +1,9 @@
 // Set up
 var express = require('express');
 var router = express.Router();
-var mongojs = require('mongojs');
-const mongoose = require('mongoose');
-
-//Mlab MongoDB connection 
-var mongoDB = 'mongodb://fwu:123456@ds161146.mlab.com:61146/flatwhiteunidb';
-mongoose.connect(mongoDB, {
-  useMongoClient: true
-});
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error:'));
-mongoose.Promise = global.Promise;
 
 // Defined University Model
-const University = require('../models/university')
+const University = require('../models/university');
 
 
 // Get a list of universities in the database
@@ -71,6 +60,11 @@ router.put('/universities/:id',function(req,res,next){
 	var university = new University(req.body);
 	var updUniversityValue = {};
 
+	// Notice: need a sub level json object to represent the geo and put this geoPoint 
+	// into the updUniversityValue
+	var geoPoint = {};
+	
+
 	if(university.name){
 		updUniversityValue.name = university.name;
 	}
@@ -79,17 +73,47 @@ router.put('/universities/:id',function(req,res,next){
 		updUniversityValue.city = university.city;
 	}
 
+	// The way to insert a geo point json object to a university instance.
+	// Could have a better way?
+
+	if(university.geopoint.lng){
+		
+		geoPoint.lng = university.geopoint.lng;
+		//updUniversityValue.geopoint.lng = university.geopoint.lng;
+		
+	}
+
+	if(university.geopoint.lat){
+		geoPoint.lat = university.geopoint.lat;
+		//updUniversityValue.geopoint.lat = university.geopoint.lat;
+	}
+
+	if(geoPoint.lat || geoPoint.lng){
+		updUniversityValue.geopoint = geoPoint;
+	}
+
+	if(university.uniBadgeId){
+		updUniversityValue.uniBadgeId = university.uniBadgeId;
+	}
+
+	
 	if(!updUniversityValue){
 		res.status(400);
 		res.json({
 			"error": "Bad Data"
 		});
 	}else{
-		University.findOneAndUpdate({_id: req.params.id}, updUniversityValue, {}, function(err, university){
+		
+		University.findOneAndUpdate({_id: req.params.id}, updUniversityValue, {},function(err){
 					if(err){
 							res.send(err);
 					}
-					res.json(university);
+					University.findById(req.params.id,function(err,university){
+						if(err){
+								res.send(err);
+						}
+							res.json(university);
+					});
 			});
 	}
 });
