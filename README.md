@@ -7,3 +7,4 @@ Express + Node.js + Swagger + MongoDB
 
 Author : Tao Wang, Linfeng Yu
 
+To do: Support more featured apis for the models we have created 
