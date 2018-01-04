@@ -9,7 +9,7 @@
       "url": "https://opensource.org/licenses/MIT"
     }
   },
-  "host": "http://ec2-18-217-241-32.us-east-2.compute.amazonaws.com:8080",
+  "host": "ec2-18-217-241-32.us-east-2.compute.amazonaws.com:8080",
   "basePath": "/api",
   "tags": [
     {
