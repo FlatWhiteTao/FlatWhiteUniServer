@@ -21,6 +21,6 @@ const majorSchema = new Schema({
 	}
 });
 
-const Major = mongoose.model('major',schoolSchema);
+const Major = mongoose.model('major',majorSchema);
 
 module.exports = Major;
